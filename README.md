@@ -96,7 +96,7 @@ The long-term goal is to ensure that AI suggestions are clearly separated from d
 
 ## Architecture
 
-Current prototype:
+### Current Prototype
 
 ```text
 React + TypeScript Frontend
@@ -105,3 +105,115 @@ Local services / mock data
         ↓
 Deterministic error analyzer
 ```
+
+### Planned Architecture
+
+```text
+React Frontend
+      ↓
+FastAPI Backend
+      ↓
+Analysis / LLM Service
+      ↓
+Structured Debug Result
+      ↓
+Evidence + Verification Layer
+      ↓
+DebugProof UI
+```
+
+## Debug Case Concept
+
+A Debug Case is intended to capture more than the final fix.
+
+It can include:
+
+- Problem summary
+- Error context
+- Investigation process
+- Root cause
+- Fix
+- Verification
+- Skills demonstrated
+- Difficulty
+- Proof score
+- Supporting evidence
+
+Future evidence may include:
+
+- GitHub commits
+- Code diffs
+- Test results
+- Screenshots
+- Logs
+- Deployment evidence
+
+## Run Locally
+
+Clone the repository:
+
+```bash
+git clone https://github.com/Sowmyaindugu1505/debugproof.git
+cd debugproof
+```
+
+Install dependencies:
+
+```bash
+pnpm install
+```
+
+Start the development server:
+
+```bash
+pnpm dev
+```
+
+Create a production build:
+
+```bash
+pnpm build
+```
+
+Preview the production build:
+
+```bash
+pnpm preview
+```
+
+## Current Status
+
+DebugProof is currently a frontend prototype.
+
+The current version demonstrates:
+
+- Product design
+- Frontend architecture
+- Type-safe React development
+- Multi-page application structure
+- Debugging workflows
+- Evidence-oriented UX
+- Production deployment
+
+The analyzer is currently rule-based rather than LLM-powered. Backend persistence, real GitHub verification, and automated evidence validation are still under development.
+
+## Roadmap
+
+- FastAPI backend
+- Database persistence
+- Real AI-assisted error analysis
+- GitHub OAuth integration
+- Commit and diff evidence
+- Test result verification
+- Screenshot and log evidence
+- Recruiter-facing case sharing
+- Stronger proof scoring
+- Evidence verification pipeline
+
+## Repository
+
+https://github.com/Sowmyaindugu1505/debugproof
+
+## Deployment
+
+https://debugproof.vercel.app
