@@ -144,7 +144,7 @@ function ConnectedState() {
 }
 
 export function GitHubPage() {
-  const [connected, setConnected] = useState(true)
+  const [connected, setConnected] = useState(false)
 
   return (
     <div className="space-y-6">
