@@ -8,6 +8,10 @@ Instead of only showing finished projects, DebugProof focuses on how developers 
 
 https://debugproof.vercel.app
 
+## Preview
+
+![DebugProof — evidence-backed developer debugging portfolio](docs/images/debugproof-hero.png)
+
 ## Why DebugProof
 
 Traditional portfolios show what was built, but they rarely show how a developer thinks when something breaks.
