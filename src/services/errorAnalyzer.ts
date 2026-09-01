@@ -461,7 +461,6 @@ export async function analyzeError(
       "failed to resolve import",
       "does not provide an export named",
       "no matching export",
-      "failed to load resource",
     ])
   ) {
     return analyzeImportError(request)
@@ -470,6 +469,7 @@ export async function analyzeError(
   if (
     containsAny(error, [
       "failed to fetch",
+      "failed to load resource",
       "network error",
       "cors",
       "fetch failed",

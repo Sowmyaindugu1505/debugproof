@@ -75,6 +75,24 @@ describe("analyzeError", () => {
     expect(result.errorType).toBe("Network / API Error")
   })
 
+  it("classifies failed resource loads as network errors", async () => {
+    vi.useFakeTimers()
+
+    const promise = analyzeError({
+      error: "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      language: "TypeScript",
+      code: "",
+      context: "The frontend cannot reach the API server.",
+    })
+
+    await vi.advanceTimersByTimeAsync(1200)
+
+    const result = await promise
+
+    expect(result.errorType).toBe("Network / API Error")
+    expect(result.verification.status).toBe("needs-review")
+  })
+
   it("classifies Python KeyError correctly", async () => {
     vi.useFakeTimers()
 
