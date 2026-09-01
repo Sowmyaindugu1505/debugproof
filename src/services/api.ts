@@ -86,7 +86,7 @@ export interface CreateCaseInput {
   lesson: string
 }
 
-function calculateProofScore(input: CreateCaseInput): number {
+export function calculateProofScore(input: CreateCaseInput): number {
   let score = 20
 
   if (input.title.trim().length > 10) score += 5
