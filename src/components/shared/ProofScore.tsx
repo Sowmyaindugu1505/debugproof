@@ -61,7 +61,14 @@ export function ProofScore({
         </div>
       </div>
       {showLabel && (
-        <span className="text-[11px] font-medium tracking-wide text-muted-2">Proof Score</span>
+        <div className="flex flex-col items-center">
+          <span className="text-[11px] font-medium tracking-wide text-muted-2">
+            Proof Score
+          </span>
+          <span className="text-[9px] tracking-wide text-muted-2">
+            Heuristic
+          </span>
+  </div>
       )}
     </div>
   )
