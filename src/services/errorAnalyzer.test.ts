@@ -92,6 +92,43 @@ describe("analyzeError", () => {
     expect(result.errorType).toBe("Python KeyError")
   })
 
+  it("classifies null property errors as runtime errors", async () => {
+  vi.useFakeTimers()
+
+  const promise = analyzeError({
+    error: "TypeError: Cannot read properties of null (reading 'id')",
+    language: "TypeScript",
+    code: "const id = user.id",
+    context: "",
+  })
+
+  await vi.advanceTimersByTimeAsync(1200)
+
+  const result = await promise
+
+  expect(result.errorType).toBe("Runtime Error")
+  expect(result.verification.status).toBe("needs-review")
+})
+
+  it("uses medium confidence for unknown errors when context is provided", async () => {
+   vi.useFakeTimers()
+
+   const promise = analyzeError({
+    error: "Something unusual happened",
+    language: "TypeScript",
+    code: "",
+    context: "This happens after submitting the profile form.",
+  })
+
+  await vi.advanceTimersByTimeAsync(1200)
+
+  const result = await promise
+
+  expect(result.errorType).toBe("Unknown Error")
+  expect(result.confidence).toBe("medium")
+  expect(result.verification.status).toBe("needs-review")
+})
+
   it("falls back to unknown error when no supported pattern matches", async () => {
     vi.useFakeTimers()
 
