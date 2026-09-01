@@ -46,7 +46,7 @@ function analyzeRuntimeError(
     likelyCause:
       "A variable, object, response, or state value is undefined or null when the application expects it to contain data.",
 
-    confidence: code ? 91 : 86,
+    confidence: "high",
 
     investigation: createInvestigation([
       {
@@ -107,7 +107,7 @@ function analyzeSyntaxError(
     likelyCause:
       "The source may contain a missing bracket, parenthesis, quote, comma, operator, keyword, or another malformed expression.",
 
-    confidence: 94,
+    confidence: "high",
 
     investigation: createInvestigation([
       {
@@ -163,7 +163,7 @@ function analyzeImportError(
     likelyCause:
       "The import path may be incorrect, the dependency may not be installed, the file may not exist, or the requested symbol may not be exported by the target module.",
 
-    confidence: 93,
+    confidence: "high",
 
     investigation: createInvestigation([
       {
@@ -220,7 +220,7 @@ function analyzeNetworkError(
     likelyCause:
       "The backend may be unavailable, the endpoint may be incorrect, authentication may have failed, or the request may have been blocked by the browser or network.",
 
-    confidence: 84,
+    confidence: "high",
 
     investigation: createInvestigation([
       {
@@ -316,7 +316,7 @@ function analyzePythonError(
 
     likelyCause,
 
-    confidence: 88,
+    confidence: "medium",
 
     investigation: createInvestigation([
       {
@@ -377,7 +377,7 @@ function analyzeUnknownError(
         ? "The available error message and context do not match a known pattern strongly enough to establish a reliable root cause."
         : "Additional application context, source code, stack trace information, or reproduction steps are required.",
 
-    confidence: hasContext ? 55 : 42,
+    confidence: hasContext ? "medium" : "low",
 
     investigation: createInvestigation([
       {

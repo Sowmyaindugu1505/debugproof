@@ -107,6 +107,6 @@ describe("analyzeError", () => {
     const result = await promise
 
     expect(result.errorType).toBe("Unknown Error")
-    expect(result.confidence).toBeLessThan(60)
+    expect(result.confidence).toBe("low")
   })
 })

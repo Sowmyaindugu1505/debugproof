@@ -20,7 +20,7 @@ export interface ErrorAnalysisResult {
 
   likelyCause: string
 
-  confidence: number
+  confidence: "low" | "medium" | "high"
 
   investigation: InvestigationStep[]
 
