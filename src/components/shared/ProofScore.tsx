@@ -68,6 +68,9 @@ export function ProofScore({
           <span className="text-[9px] tracking-wide text-muted-2">
             Heuristic
           </span>
+          <span className="mt-1 max-w-[140px] text-center text-[9px] leading-tight text-muted-2">
+            Based on case completeness and evidence signals.
+          </span>
         </div>
       )}
     </div>
