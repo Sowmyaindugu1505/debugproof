@@ -124,9 +124,9 @@ describe("analyzeError", () => {
 
     const result = await promise
 
-   expect(result.errorType).toBe("Unknown Error")
-   expect(result.confidence).toBe("medium")
-   expect(result.verification.status).toBe("needs-review")
+    expect(result.errorType).toBe("Unknown Error")
+    expect(result.confidence).toBe("medium")
+    expect(result.verification.status).toBe("needs-review")
   })
 
   it("falls back to unknown error when no supported pattern matches", async () => {
