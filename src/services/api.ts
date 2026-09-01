@@ -27,6 +27,46 @@ import type {
 
 const LATENCY = 220
 
+const CREATED_CASES_STORAGE_KEY = "debugproof-created-cases"
+
+function getPersistedCases(): DebugCase[] {
+  if (typeof window === "undefined") return []
+
+  try {
+    const stored = window.localStorage.getItem(CREATED_CASES_STORAGE_KEY)
+
+    if (!stored) return []
+
+    const parsed = JSON.parse(stored)
+
+    return Array.isArray(parsed) ? (parsed as DebugCase[]) : []
+  } catch {
+    return []
+  }
+}
+
+function persistCase(debugCase: DebugCase): void {
+  if (typeof window === "undefined") return
+
+  const existing = getPersistedCases()
+  const withoutDuplicate = existing.filter((item) => item.id !== debugCase.id)
+
+  window.localStorage.setItem(
+    CREATED_CASES_STORAGE_KEY,
+    JSON.stringify([...withoutDuplicate, debugCase]),
+  )
+}
+
+function getAllDebugCases(): DebugCase[] {
+  const persisted = getPersistedCases()
+  const persistedIds = new Set(persisted.map((debugCase) => debugCase.id))
+
+  return [
+    ...debugCases.filter((debugCase) => !persistedIds.has(debugCase.id)),
+    ...persisted,
+  ]
+}
+
 function delay<T>(value: T, ms = LATENCY): Promise<T> {
   return new Promise((resolve) => {
     setTimeout(() => resolve(value), ms)
@@ -103,15 +143,15 @@ export const api = {
   // --- debug cases ---------------------------------------------------------
 
   getDebugCases(): Promise<DebugCase[]> {
-    return delay(debugCases)
+    return delay(getAllDebugCases())
   },
 
   getDebugCase(id: string): Promise<DebugCase | null> {
-    return delay(debugCases.find((c) => c.id === id) ?? null)
+    return delay(getAllDebugCases().find((c) => c.id === id) ?? null)
   },
 
   getCasesByProject(projectId: string): Promise<DebugCase[]> {
-    return delay(debugCases.filter((c) => c.projectId === projectId))
+    return delay(getAllDebugCases().filter((c) => c.projectId === projectId))
   },
 
   // --- create debug case ---------------------------------------------------
@@ -169,7 +209,7 @@ export const api = {
       evidence: [],
     }
 
-    debugCases.push(created)
+    persistCase(created)
 
     return delay(created)
   },
