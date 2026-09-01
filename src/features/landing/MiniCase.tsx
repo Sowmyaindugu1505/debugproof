@@ -61,7 +61,7 @@ export function MiniCase() {
 
         <div className="flex items-center gap-2 rounded-lg border border-border bg-accent-soft/40 px-3 py-2">
           <CheckCircle2 className="h-4 w-4 text-accent" />
-          <span className="text-[12px] text-accent">Verified · 2 tests passing in CI</span>
+          <span className="text-[12px] text-accent">Demo evidence · example CI verification</span>
           <Badge tone="neutral" className="ml-auto">
             Medium
           </Badge>
