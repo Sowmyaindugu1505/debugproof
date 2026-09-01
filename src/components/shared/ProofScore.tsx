@@ -68,7 +68,7 @@ export function ProofScore({
           <span className="text-[9px] tracking-wide text-muted-2">
             Heuristic
           </span>
-  </div>
+        </div>
       )}
     </div>
   )
